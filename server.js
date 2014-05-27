@@ -74,13 +74,10 @@ router.route( '/gpio' )
 // ==========================================================================
 router.route( '/gpio/:pin_id' )
     .put( function ( req, res ) {
-            GpioPin.findOne( {
-                    pin: req.params.pin_id
-                }, function ( err, pin ) {
+            GpioPin.findOne( { pin: req.params.pin_id }, function ( err, pin ) {
                     if ( err ) {
                         res.send( err );
-                    }
-                }
+                    }                
                 var write = parseInt( req.body.write ); gpioWrite( pin, write );
             } );
 } )
