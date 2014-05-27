@@ -31,7 +31,7 @@ var port = process.env.PORT || 8080;
 var router = express.Router();
 
 router.get('/', function(req, res){
-    res.json({message: 'Welcome to our api!'});
+    res.json({message: 'usage /gpio get pin state or update pin state'});
 });
 router.route('/gpio')
 .post(function(req, res){
