@@ -37,10 +37,9 @@ function gpioWrite( pin, write ) {
                 }
                 res.json( pin );
             } );
+
         } );
     } );
-} );
-
 }
 // configure app to use bodyParser()
 // this will let us get data from POST body
@@ -83,22 +82,23 @@ router.route( '/gpio/:pin_id' )
                     }
                 }
                 var write = parseInt( req.body.write ); gpioWrite( pin, write );
-            } )
-        .get( function ( req, res ) {
-            GpioPin.find( function ( err, gpioPins ) {
-                if ( err ) {
-                    res.send( err );
-                }
-                res.json( gpioPins );
             } );
+} )
+    .get( function ( req, res ) {
+        GpioPin.find( function ( err, gpioPins ) {
+            if ( err ) {
+                res.send( err );
+            }
+            res.json( gpioPins );
         } );
+    } );
 
-        // Register Routes
-        app.use( '/api', router );
+// Register Routes
+app.use( '/api', router );
 
 
-        // Start the Server
-        //=========================================================================
-        app.listen( port );
+// Start the Server
+//=========================================================================
+app.listen( port );
 
-        console.log( 'Server started on ' + port );
+console.log( 'Server started on ' + port );
